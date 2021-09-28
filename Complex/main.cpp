@@ -1,7 +1,6 @@
-#include "header.h"
+#include "Complex.h"
 #include <iostream>
 #include <cmath>
-
 
 Complex::Complex(double re, double im) {
     this->re = re;
@@ -16,7 +15,7 @@ double Complex::get_im() {
     return this->im;
 }
 
-void Complex::print() {
+void Complex::print() const {
     std::cout << this->re << " + " << this->im << "i" << std::endl;
 }
 
@@ -25,34 +24,34 @@ Complex::Complex(const Complex& n) {
     this->im = n.im;
 }
 
-const Complex Complex::operator+(const Complex &a) const {
+Complex Complex::operator+(const Complex &a) const {
     Complex res(0, 0);
     res.re = this->re + a.re;
     res.im = this->im + a.im;
     return (res);
 }
 
-const Complex Complex::operator-(const Complex &a) const {
+Complex Complex::operator-(const Complex &a) const {
     Complex res(0, 0);
     res.re = this->re - a.re;
     res.im = this->im - a.im;
     return (res);
 }
 
-const Complex Complex::operator-() const {
+Complex Complex::operator-() const {
     return Complex(-this->re, -this->im);
 }
 
-const Complex Complex::operator*(const Complex &a) const {
+Complex Complex::operator*(const Complex &a) const {
     return Complex(this->re*a.re + this->im*a.im, this->im*a.re + this->re*a.im);
 }
 
-const bool Complex::operator==(const Complex &a) const {
+bool Complex::operator==(const Complex &a) const {
     if(this->im == a.im and this->re == a.im) return true;
     else return false;
 }
 
-const bool Complex::operator!=(const Complex &a) const {
+bool Complex::operator!=(const Complex &a) const {
     if(this->im != a.im or this->re != a.im) return true;
     else return false;
 }
@@ -64,6 +63,21 @@ double Complex::abs() {
 void Complex::operator=(const Complex &a) {
     this->re = a.re;
     this->im = a.im;
+}
+
+void Complex::operator+=(double a) {
+    this->re += a;
+}
+
+Complex Complex::operator+(const double &a) const {
+    Complex res(0, 0);
+    res.re = this->re + a;
+    res.im = this->im;
+    return (res);
+}
+
+Complex Complex::operator*(const double &a) const {
+    return Complex(this->re * a, this->im);
 }
 
 
@@ -83,6 +97,9 @@ int main() {
     c.print();
 
     c = a * b;
+    c.print();
+
+    c = b + a * 2;
     c.print();
 
     std::cout << (a == b ) << " " <<  (a != b) << std::endl;
