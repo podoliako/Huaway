@@ -12,20 +12,32 @@ private:
 public:
     Complex(double re, double im);
     Complex(const Complex&);
+
     void print() const;
-    double abs();
-    double get_real();
-    double get_im();
-    void operator+=(double a);
+    double abs() const;
+    double get_real() const;
+    double get_im() const;
+
+    Complex& operator+=(const Complex& a);
+    Complex& operator-=(const Complex& a);
+    Complex& operator*=(const Complex& a);
+
     Complex operator+(const Complex& a) const;
     Complex operator+(const double &a) const;
+
     Complex operator-(const Complex& a) const;
+    Complex operator-(const double &a) const;
+
     Complex operator*(const Complex& a) const;
     Complex operator*(const double& a) const;
+
     Complex operator-() const;
+    Complex operator+() const;
+
     bool operator==(const Complex& a) const;
     bool operator!=(const Complex& a) const;
-    void operator=(const Complex& a);
+    Complex& operator=(const Complex& a);
+
     ~Complex() = default;
 };
 
