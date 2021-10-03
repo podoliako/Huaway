@@ -10,6 +10,7 @@ private:
     double re;
     double im;
 public:
+    Complex();
     Complex(double re, double im);
     Complex(const Complex&);
 
@@ -17,6 +18,8 @@ public:
     double abs() const;
     double get_real() const;
     double get_im() const;
+    void set_real(double a);
+    void set_im(double a);
 
     Complex& operator+=(const Complex& a);
     Complex& operator-=(const Complex& a);
@@ -38,7 +41,7 @@ public:
     bool operator!=(const Complex& a) const;
     Complex& operator=(const Complex& a);
 
-    ~Complex() = default;
+    ~Complex(){};
 };
 
 #endif //COMPLEX_COMPLEX_H
