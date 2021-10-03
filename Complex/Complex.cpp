@@ -75,7 +75,7 @@ Complex Complex::operator+(const double &a) const {
     Complex res(0, 0);
     res.re = this->re + a;
     res.im = this->im;
-    return (res);
+    return res;
 }
 
 Complex Complex::operator*(const double &a) const {
