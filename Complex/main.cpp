@@ -1,4 +1,4 @@
-#include "unit_test.cpp"
+#include "unit_test.h"
 
 int main() {
     run_test();

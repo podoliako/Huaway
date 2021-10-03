@@ -6,7 +6,6 @@
 #include <iostream>
 #include <cmath>
 
-Complex::Complex() {}
 
 Complex::Complex(double re, double im) {
     this->re = re;

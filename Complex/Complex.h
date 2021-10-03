@@ -10,7 +10,7 @@ private:
     double re;
     double im;
 public:
-    Complex();
+    Complex(){};
     Complex(double re, double im);
     Complex(const Complex&);
 

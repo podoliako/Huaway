@@ -2,8 +2,8 @@
 // Created by egorchan on 03.10.2021.
 //
 
-#include "Complex.cpp"
-
+#include "Complex.h"
+#include <iostream>
 
 void run_test(){
     Complex a(3, 2);
