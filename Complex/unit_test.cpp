@@ -15,7 +15,7 @@ void run_test(){
     c.print(); // 4 + 3i
 
     c = - a;
-    c.print(); // -3 + -2i
+    c.print(); // -3 - 2i
 
     c = a - b;
     c.print(); // 2 + 1i
@@ -36,6 +36,12 @@ void run_test(){
     d.set_im(0);
     d.set_real(2);
     d.print(); // 2 + 0i
+
+    (d/c).print(); // 1 - 1i
+    (d/2).print(); // 1 + 0i
+
+    d /= c;
+    d.print(); // 1 - 1i
 
     std::cout << (a == b ) << " " <<  (a != b) << " " << a.abs() << std::endl; // 0 1 5
 

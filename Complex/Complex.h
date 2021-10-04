@@ -24,6 +24,7 @@ public:
     Complex& operator+=(const Complex& a);
     Complex& operator-=(const Complex& a);
     Complex& operator*=(const Complex& a);
+    Complex& operator/=(const Complex& a);
 
     Complex operator+(const Complex& a) const;
     Complex operator+(const double &a) const;
@@ -33,6 +34,9 @@ public:
 
     Complex operator*(const Complex& a) const;
     Complex operator*(const double& a) const;
+
+    Complex operator/(const Complex& a) const;
+    Complex operator/(const double& a) const;
 
     Complex operator-() const;
     Complex operator+() const;

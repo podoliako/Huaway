@@ -21,7 +21,9 @@ double Complex::get_im() const{
 }
 
 void Complex::print() const {
-    std::cout << this->re << " + " << this->im << "i" << std::endl;
+    if(im >= 0) std::cout << this->re << " + " << this->im << "i" << std::endl;
+    else std::cout << this->re << " - " << -this->im << "i" << std::endl;
+
 }
 
 Complex::Complex(const Complex& n) {
@@ -79,7 +81,18 @@ Complex Complex::operator+(const double &a) const {
 }
 
 Complex Complex::operator*(const double &a) const {
-    return Complex(this->re * a, this->im);
+    return Complex(this->re * a, this->im * a);
+}
+
+Complex Complex::operator/(const Complex &a) const {
+    Complex res;
+    res.set_real((re * a.get_real() + im * a.get_im()) / (a.get_im() * a.get_im() + a.get_real() * a.get_real()));
+    res.set_im((a.get_real() * im - re * a.get_im()) / (a.get_im() * a.get_im() + a.get_real() * a.get_real()));
+    return res;
+}
+
+Complex Complex::operator/(const double &a) const {
+    return Complex(this->re / a, this->im / a);
 }
 
 Complex Complex::operator-(const double &a) const {
@@ -100,6 +113,15 @@ Complex &Complex::operator-=(const Complex& a) {
 
 Complex &Complex::operator*=(const Complex& a) {
     *this = Complex(*this * a);
+    return *this;
+}
+
+Complex &Complex::operator/=(const Complex& a)
+{
+    double Re = re;
+    double Im = im;
+    re = (Re * a.get_real() + Im * a.get_im()) / (a.get_im() * a.get_im() + a.get_real() * a.get_real());
+    im = (a.get_real() * Im - Re * a.get_im()) / (a.get_im() * a.get_im() + a.get_real() * a.get_real());
     return *this;
 }
 
