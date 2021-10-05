@@ -1,50 +1,76 @@
-//
-// Created by egorchan on 03.10.2021.
-//
-
-#include "Complex.h"
 #include <iostream>
 
+#include "Complex.h"
+
+
 void run_test(){
+    for(int nmb = -100; nmb < 100; nmb++){
+        Complex a(nmb, nmb);
+        Complex b(nmb, nmb);
+        if(a.re != nmb or a.im != nmb or b.re != nmb or b.im != nmb){
+            std::cout << "Constructor from doubles error, number = " << nmb << std::endl;
+        }
+    }
+
+    for(int nmb = -100; nmb < 100; nmb++){
+        Complex a(nmb, nmb);
+        Complex b(a);
+        if(b.re != nmb or b.im != nmb){
+            std::cout << "Copy constructor error, number = " << nmb << std::endl;
+        }
+    }
+
+    for(int nmb = -100; nmb < 100; nmb++){
+        Complex a(nmb, nmb);
+        Complex b(-a);
+        if(b.re != -nmb or b.im != -nmb){
+            std::cout<< "Minus one argument operator error, number = " << nmb << std::endl;
+        }
+    }
+
+    for(int nmb = -100; nmb < 100; nmb++){
+        Complex a(nmb, nmb);
+        Complex b(nmb, nmb);
+        if((a == b) != true){
+            std::cout << "== operator error, number = " << nmb << std::endl;
+        }
+        if((a != b) != false){
+            std::cout << "!= operator error, number = " << nmb << std::endl;
+        }
+        Complex d;
+        d = Complex(nmb, nmb);
+        if(d.re != nmb or d.im != nmb){
+            std::cout << "= operator error, number = " << nmb << std::endl;
+        }
+    }
+
+
+    for(int nmb = -100; nmb < 100; nmb++) {
+        Complex a(nmb, nmb);
+        Complex b(nmb, nmb);
+        Complex c(a - b);
+        if (c.re != 0 or c.im != 0) {
+            std::cout << "Minus two arguments operator error, number = " << nmb << std::endl;
+        }
+        c = a + -b;
+        if (c.re != 0 or c.im != 0) {
+            std::cout << "Plus two arguments operator error, number = " << nmb << std::endl;
+        }
+        c = a;
+        c -= a;
+        if (c.re != 0 or c.im != 0) {
+            std::cout << "-= operator error, number = " << nmb << std::endl;
+        }
+        c = -a;
+        c += a;
+        if (c.re != 0 or c.im != 0) {
+            std::cout << "+= operator error, number = " << nmb << std::endl;
+        }
+    }
+
     Complex a(3, 2);
-    Complex b(1, 1);
-    a.print(); // 3 + 2i
-    b.print(); // 1 + 1i
-
-    Complex c(a + b);
-    c.print(); // 4 + 3i
-
-    c = - a;
-    c.print(); // -3 - 2i
-
-    c = a - b;
-    c.print(); // 2 + 1i
-
-    c = a * b;
-    c.print(); // 5 + 5i
-
-    c = b + a * 2;
-    c.print(); // 7 + 3i
-
-    Complex d(1,1);
-    c = d;
-    a += d;
-    a.print(); // 4 + 3i
-    d.print(); // 1 + 1i
-    c.print();  // 1 + 1i
-
-    d.set_im(0);
-    d.set_real(2);
-    d.print(); // 2 + 0i
-
-    (d/c).print(); // 1 - 1i
-    (d/2).print(); // 1 + 0i
-
-    d /= c;
-    d.print(); // 1 - 1i
-
-    std::cout << (a == b ) << " " <<  (a != b) << " " << a.abs() << std::endl; // 0 1 5
-
-    std::cout << b.abs() << std::endl; //  1.41
+    Complex b(-7, 25);
+    Complex c(a * b);
+    if(c.re != 29 or c.im != 61) std::cout << "Multiplication operator error" << std::endl;
 
 }
